@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    kotlin("plugin.serialization")
 }
 
 kotlin {
@@ -23,13 +24,32 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val ktorVersion = "2.3.2"
+        val coroutineVersion = "1.6.4"
+
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlin:kotlin-stdlib-common")
+                implementation(
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
+                implementation(
+                    "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation("androidx.core:core-ktx:1.10.1")
+                implementation(
+                    "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
+                implementation("io.ktor:ktor-client-android:$ktorVersion")
+            }
+        }
         val androidUnitTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -39,6 +59,9 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation("io.ktor:ktor-client-ios:$ktorVersion")
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
