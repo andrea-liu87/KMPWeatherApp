@@ -1,7 +1,18 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
+        classpath("com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.14.0")
+    }
+}
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
     kotlin("plugin.serialization")
+    id("com.codingfeline.buildkonfig") version "+"
 }
 
 kotlin {
@@ -82,3 +93,13 @@ android {
         minSdk = 24
     }
 }
+
+buildkonfig {
+    packageName = "com.andreasgift.kmpweatherapp"
+
+    defaultConfigs {
+        buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING,
+            "API_KEY", ((project.findProperty("API_KEY") ?: "") as String))
+    }
+}
+
