@@ -55,7 +55,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("androidx.core:core-ktx:1.10.1")
+                implementation("androidx.core:core-ktx:1.12.0")
                 implementation(
                     "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
@@ -99,7 +99,7 @@ buildkonfig {
 
     defaultConfigs {
         buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING,
-            "API_KEY", ((project.findProperty("API_KEY") ?: "") as String))
+            "apiKey", ((project.findProperty("API_KEY") ?: "null") as String) )
     }
 }
 
