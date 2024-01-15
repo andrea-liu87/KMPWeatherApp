@@ -1,4 +1,4 @@
-package com.andreasgift.kmpweatherapp.android
+package com.andreasgift.kmpweatherapp.android.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MyApplicationTheme(
+fun WeatherTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
@@ -32,8 +32,8 @@ fun MyApplicationTheme(
     val typography = Typography(
         body1 = TextStyle(
             fontFamily = FontFamily.Default,
-            fontWeight = FontWeight.Normal,
-            fontSize = 16.sp,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 20.sp,
             color = Color.White
         ),
         body2 = TextStyle(
@@ -44,14 +44,14 @@ fun MyApplicationTheme(
         ),
         h2 = TextStyle(
             fontFamily = FontFamily.Default,
-            fontWeight = FontWeight.Bold,
-            fontSize = 28.sp,
+            fontWeight = FontWeight.Light,
+            fontSize = 96.sp,
             color = Color.White
         ),
         h3 = TextStyle(
             fontFamily = FontFamily.Default,
-            fontWeight = FontWeight.Bold,
-            fontSize = 20.sp,
+            fontWeight = FontWeight.Normal,
+            fontSize = 34.sp,
             color = Color.White
         )
     )
