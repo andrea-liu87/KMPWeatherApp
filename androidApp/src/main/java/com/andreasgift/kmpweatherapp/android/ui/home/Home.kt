@@ -11,15 +11,16 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.andreasgift.kmpweatherapp.WeatherAPI
 import com.andreasgift.kmpweatherapp.android.R
+import com.andreasgift.kmpweatherapp.android.ui.theme.WeatherTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Home(
     onNavigateToRoute: (String) -> Unit,
-    onExpandBottomSheet: (String) -> Unit,
     modifier: Modifier = Modifier,
     api: WeatherAPI
 ){
@@ -104,18 +105,15 @@ fun WeatherView(api: WeatherAPI) {
     }
 }
 
-@Composable
-@OptIn(ExperimentalMaterialApi::class)
-fun BottomSheetContent(sheetScaffoldState: BottomSheetScaffoldState) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        Row (){
-            Text(sheetScaffoldState.bottomSheetState.progress.toString(), style = MaterialTheme.typography.body1, color = Color.Gray)
-            Text(sheetScaffoldState.bottomSheetState.currentValue.name, style = MaterialTheme.typography.body1, color = Color.Gray)
-        }
-    }
-}
-
 fun convertToC (f:Double) : String {
     val tempInC = f - 273
     return String.format("%.0f", tempInC)
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun WeatherViewPreview(){
+    WeatherTheme() {
+        WeatherView(api = WeatherAPI())
+    }
 }
