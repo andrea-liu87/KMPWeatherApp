@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,9 +35,10 @@ fun Home(
 
 
                 BottomSheetScaffold(
-                    sheetContent = { BottomSheetContent(sheetState) },
-                    sheetPeekHeight = 150.dp,
+                    sheetContent = { BottomSheetContent() },
+                    sheetPeekHeight = LocalConfiguration.current.screenHeightDp.dp/3,
                     sheetShape = RoundedCornerShape(topStart = radius, topEnd = radius),
+                    sheetBackgroundColor = Color.Black.copy(0.3f),
                     content = {
                         WeatherView(api = api)
                     }
@@ -116,4 +118,10 @@ fun WeatherViewPreview(){
     WeatherTheme() {
         WeatherView(api = WeatherAPI())
     }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun HomePreview(){
+    Home(onNavigateToRoute = {}, api = WeatherAPI())
 }

@@ -11,7 +11,6 @@ import androidx.navigation.compose.rememberNavController
  */
 object MainDestinations {
     const val HOME_ROUTE = "home"
-    const val EXPAND_BOTTOM_SHEET_ROUTE = "bottomSheet"
     const val SEE_MORE_ROUTE = "seeMore"
 }
 
@@ -41,12 +40,6 @@ class WeatherNavController(
 
     fun upPress() {
         navController.navigateUp()
-    }
-
-    fun navigateToExpandedBottomSheet(route: String) {
-        if (route != currentRoute) {
-            navController.navigate(route)
-        }
     }
 
     fun navigateToSeeMoreScreen(route: String){

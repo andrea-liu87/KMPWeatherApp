@@ -21,7 +21,6 @@ fun KMPWeatherApp() {
             startDestination = MainDestinations.HOME_ROUTE
         ) {
             weatherNavGraph(
-                expandBottomSheet = weatherNavController::navigateToExpandedBottomSheet,
                 upPress = weatherNavController::upPress,
                 onNavigateToRoute = weatherNavController::navigateToSeeMoreScreen,
                 api = api
@@ -31,19 +30,15 @@ fun KMPWeatherApp() {
 }
 
 private fun NavGraphBuilder.weatherNavGraph(
-    expandBottomSheet: (String) -> Unit,
     upPress: () -> Unit,
     onNavigateToRoute: (String) -> Unit,
     modifier: Modifier = Modifier,
     api: WeatherAPI
 ) {
     composable(MainDestinations.HOME_ROUTE) {
-        Home( onNavigateToRoute, expandBottomSheet, modifier, api)
+        Home( onNavigateToRoute, modifier, api)
     }
     composable(MainDestinations.SEE_MORE_ROUTE) { from ->
-
-    }
-    composable(MainDestinations.EXPAND_BOTTOM_SHEET_ROUTE) { from ->
 
     }
 }
