@@ -6,11 +6,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.andreasgift.kmpweatherapp.android.ui.component.HourForecast
 import com.andreasgift.kmpweatherapp.android.ui.theme.SolidPurple
 import com.andreasgift.kmpweatherapp.android.ui.theme.UnselectedTabTitle
 import com.andreasgift.kmpweatherapp.android.ui.theme.secondary
@@ -21,7 +21,8 @@ fun BottomSheetContent() {
     var tabIndex by remember { mutableStateOf(0) }
 
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .background(Color.Black.copy(0.3f))
             .padding(top = 20.dp)
     ) {
@@ -51,10 +52,13 @@ fun BottomSheetContent() {
             modifier = Modifier
                 .padding()
                 .fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            verticalArrangement = Arrangement.Top
         ) {
-            Text(text = "Selected page: ${titles[tabIndex]}")
+            if (tabIndex == 0){
+                HourForecast()
+            } else {
+                Text(text = "Weekly Forecast Page")
+            }
         }
     }
 }
