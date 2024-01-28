@@ -6,6 +6,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,8 +25,10 @@ fun BottomSheetContent() {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black.copy(0.3f))
-            .padding(top = 20.dp)
+            .padding(bottom = 40.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        HandleDrag()
         TabRow(selectedTabIndex = tabIndex,
             modifier = Modifier.fillMaxWidth(),
             backgroundColor = Color.Transparent,
@@ -61,6 +64,23 @@ fun BottomSheetContent() {
             }
         }
     }
+}
+
+@Composable
+fun HandleDrag(){
+    Box(
+        modifier = Modifier
+            .height(5.dp)
+            .width(48.dp)
+            .padding(top = 12.dp, bottom = 16.dp)
+            .background(color = Color.Black, shape = RoundedCornerShape( 2.dp))
+    ) {}
+}
+
+@Preview
+@Composable
+fun handleShape(){
+    HandleDrag()
 }
 
 @OptIn(ExperimentalMaterialApi::class)

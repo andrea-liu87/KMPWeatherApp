@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.andreasgift.kmpweatherapp.WeatherAPI
 import com.andreasgift.kmpweatherapp.android.R
+import com.andreasgift.kmpweatherapp.android.ui.component.TabBar
 import com.andreasgift.kmpweatherapp.android.ui.theme.WeatherTheme
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -24,26 +25,29 @@ fun Home(
     onNavigateToRoute: (String) -> Unit,
     modifier: Modifier = Modifier,
     api: WeatherAPI
-){
+) {
     val sheetState = rememberBottomSheetScaffoldState(
-                    bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
-                )
-                val scope = rememberCoroutineScope()
-                val radius =
-                    if (sheetState.bottomSheetState.isExpanded ) 0.dp
-                    else 16.dp
+        bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
+    )
+    val scope = rememberCoroutineScope()
+    val radius =
+        if (sheetState.bottomSheetState.isExpanded) 0.dp
+        else 16.dp
 
-
-                BottomSheetScaffold(
-                    sheetContent = { BottomSheetContent() },
-                    sheetPeekHeight = LocalConfiguration.current.screenHeightDp.dp/3,
-                    sheetShape = RoundedCornerShape(topStart = radius, topEnd = radius),
-                    sheetBackgroundColor = Color.Black.copy(0.3f),
-                    content = {
-                        WeatherView(api = api)
-                    }
-                )
+    Scaffold(
+        bottomBar = { TabBar()}
+    ) {
+        BottomSheetScaffold(
+            sheetContent = { BottomSheetContent() },
+            sheetPeekHeight = LocalConfiguration.current.screenHeightDp.dp / 2,
+            sheetShape = RoundedCornerShape(topStart = radius, topEnd = radius),
+            sheetBackgroundColor = Color.Black.copy(0.3f),
+            content = {
+                WeatherView(api = api)
             }
+        )
+    }
+}
 
 @Composable
 fun WeatherView(api: WeatherAPI) {
@@ -123,5 +127,7 @@ fun WeatherViewPreview(){
 @Preview(showSystemUi = true)
 @Composable
 fun HomePreview(){
-    Home(onNavigateToRoute = {}, api = WeatherAPI())
+    WeatherTheme() {
+        Home(onNavigateToRoute = {}, api = WeatherAPI())
+    }
 }
