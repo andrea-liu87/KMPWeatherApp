@@ -12,7 +12,6 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,12 +29,7 @@ fun TabBar() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = 40.dp)
-            .graphicsLayer {
-                shadowElevation = 8.dp.toPx()
-                shape = BottomBarBackground()
-                clip = true
-            }
-            .background(color = SolidPurple2.copy(0.5f)),
+            .background(color = SolidPurple2.copy(0.5f), shape = BottomBarBackground()),
         horizontalArrangement = Arrangement.Center
     ) {
         Image(
